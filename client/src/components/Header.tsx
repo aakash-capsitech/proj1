@@ -5,7 +5,6 @@ import image03 from "../assets/header/images03.webp"
 import image04 from "../assets/header/images04.webp"
 
 const HeaderSlider = () => {
-  // Sample data - replace with your own images, texts, and buttons
   const slides = [
     {
       id: 1,
@@ -44,16 +43,14 @@ const HeaderSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  // ...existing code...
-const intervalRef = React.useRef<any>(null);
-// ...existing code...
 
-  // Auto-slide functionality
+const intervalRef = React.useRef<any>(null);
+
   useEffect(() => {
     if (!isHovered) {
       intervalRef.current = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
-      }, 3000); // Change slide every 4 seconds
+      }, 3000);
     } else {
       clearInterval(intervalRef.current);
     }
@@ -61,7 +58,6 @@ const intervalRef = React.useRef<any>(null);
     return () => clearInterval(intervalRef.current);
   }, [isHovered, slides.length]);
 
-  // Handle slide change with animation
   const goToSlide = (index: any) => {
     if (index !== currentSlide && !isAnimating) {
       setIsAnimating(true);
@@ -80,12 +76,11 @@ const intervalRef = React.useRef<any>(null);
 
   return (
     <div 
-      className="relative max-w-[1280px] mx-auto h-[700px] overflow-hidden group"
+      className="relative max-w-[1440px] mx-auto h-[600px] overflow-hidden group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Images */}
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full rounded-2xl overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -100,13 +95,11 @@ const intervalRef = React.useRef<any>(null);
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            {/* Overlay gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
           </div>
         ))}
       </div>
 
-      {/* Content Overlay */}
       <div className="absolute inset-0 flex items-center">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="max-w-2xl">
@@ -121,8 +114,7 @@ const intervalRef = React.useRef<any>(null);
               <p className="text-xl lg:text-2xl text-gray-200 mb-8 leading-relaxed">
                 {slides[currentSlide].subtitle}
               </p>
-              
-              {/* Action Buttons */}
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="group/btn bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2">
                   {slides[currentSlide].primaryButton}
@@ -139,26 +131,6 @@ const intervalRef = React.useRef<any>(null);
         </div>
       </div>
 
-      {/* Navigation Arrows */}
-      {/* <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </button> */}
-
-      {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
         {slides.map((_, index) => (
           <button
@@ -172,21 +144,6 @@ const intervalRef = React.useRef<any>(null);
           />
         ))}
       </div>
-
-      {/* Slide Counter */}
-      {/* <div className="absolute top-8 right-8 bg-black/30 backdrop-blur-sm text-white px-4 py-2 rounded-full font-medium">
-        {String(currentSlide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
-      </div> */}
-
-      {/* Play/Pause Indicator */}
-      {/* <div className="absolute top-8 left-8 bg-black/30 backdrop-blur-sm text-white px-4 py-2 rounded-full flex items-center gap-2">
-        <svg className={`w-4 h-4 ${isHovered ? 'opacity-50' : 'opacity-100'}`} fill="currentColor" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
-        <span className="text-sm font-medium">
-          {isHovered ? 'Paused' : 'Auto'}
-        </span>
-      </div> */}
     </div>
   );
 };

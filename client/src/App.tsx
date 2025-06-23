@@ -6,6 +6,7 @@ import ContactForm from "./pages/ContactForm"
 import ContactDataPage from "./pages/ContactDataPage"
 import Blogs from "./pages/Blogs"
 import Services from "./pages/Services"
+import Signin from "./pages/Signin"
 const App = () => {
   return (
     <div>
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/contactdata" element={<ContactDataPage />} />
+          <Route path="/signin" element={<Signin />} />
         </Routes>
       </BrowserRouter>
     </div>

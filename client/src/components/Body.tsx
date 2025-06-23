@@ -49,9 +49,9 @@ const SectionLayout = ({
         />
       </div>
       <div className="md:w-1/2 text-left">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">{title}</h1>
-        <p className="text-blue-600 font-semibold mb-2">{subtitle}</p>
-        <p className="text-gray-700 text-sm leading-relaxed">{description}</p>
+        <h1 className="text-4xl font-bold text-gray-800 mb-2">{title}</h1>
+        <p className="text-red-600 font-normal mt-2 mb-4 text-lg">{subtitle}</p>
+        <p className="text-gray-700 leading-relaxed text-lg font-medium">{description}</p>
       </div>
     </div>
   );
