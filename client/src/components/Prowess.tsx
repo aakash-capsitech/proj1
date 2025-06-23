@@ -34,7 +34,7 @@ const elements: ProwessElements[] = [
 
 const ProwessComponent = ({ icon, title }: ProwessElements) => {
   return (
-    <div className="flex flex-col items-start gap-2 px-4">
+    <div className="flex flex-col items-center gap-2 px-4">
       <img src={icon} alt={title} className="w-10 h-10 rounded-full" />
       <h3 className="text-md font-semibold text-white">{title}</h3>
     </div>

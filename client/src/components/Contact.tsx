@@ -1,6 +1,6 @@
 const Contact = () => {
   return (
-    <div className="max-w-[1440px] bg-[#FE4644] pl-32 mx-auto">
+    <div className="max-w-[2000px] bg-[#FE4644] pl-32 mx-auto">
       <div className="max-w-[1280px] py-12">
         <div className="text-yellow-400 text-xl mb-2">
           <p>Let's talk</p>

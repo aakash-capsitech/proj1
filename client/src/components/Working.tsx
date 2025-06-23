@@ -5,6 +5,7 @@ import chakraicon from "../assets/working/chakra.png"
 import gearicon from "../assets/working/gear.png"
 import chaticon from "../assets/working/chat.png"
 import image from "../assets/working/image.png"
+import { useEffect, useState } from "react"
 
 interface WorkingElementsInterface {
   icon: string;
@@ -43,47 +44,81 @@ const WorkingElements: WorkingElementsInterface[] = [
   },
 ];
 
-const Working = () => {
-  return (
-    <div className="py-12 px-6 max-w-6xl mx-auto flex flex-wrap gap-6">
-      <div
-        className="w-full bg-cover bg-center"
-        style={{ backgroundImage: `url(${image})` }}
-      >
-          <div>
-              <h1 className="text-3xl font-bold mb-4 text-gray-800">Working Mechanism</h1>
-          </div>
-          <div>
-              <p className="text-gray-600 mb-8 text-sm max-w-3xl mx-auto">
-                  We have a number of successful organizations under our belt that are
-                  comprehensively designed and developed by our skilled team. Our working
-                  methodologies encompass the integration of sectional development and
-                  extensive planning. Our working protocols include but are not limited to
-                  the following stages of development:
-              </p>
-
-              <div className="">
-                  {WorkingElements.map((ele, index) => (
-                  <WorkingElementsComponent key={index} icon={ele.icon} description={ele.description} />
-                  ))}
-              </div>
-          </div>
-        </div>
-    </div>
-  );
-};
-
-export default Working;
-
 const WorkingElementsComponent = ({ icon, description }: WorkingElementsInterface) => {
   return (
-    <div className="p-4">
+    <div className="flex items-start gap-4 p-4 backdrop-blur-sm">
       <img
         src={icon}
         alt="step icon"
-        className="w-8 h-8 object-contain mt-1"
+        className="w-8 h-8 object-contain flex-shrink-0 mt-1"
       />
       <p className="text-gray-700 text-sm leading-relaxed">{description}</p>
     </div>
   );
 };
+
+const Working = () => {
+
+   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  
+    useEffect(() => {
+      const checkScreenSize = () => {
+        setIsLargeScreen(window.innerWidth >= 1024);
+      };
+  
+      checkScreenSize();
+      window.addEventListener('resize', checkScreenSize);
+  
+      return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
+  return (
+    <section className="py-12 px-6">
+      <div className="max-w-6xl mx-auto">
+        {/* <div
+          className="min-h-screen bg-cover bg-center bg-no-repeat rounded-lg p-8"
+          style={{ backgroundImage: `url(${image})` }}
+        > */}
+          <div
+        className="w-full bg-cover bg-center flex flex-wrap justify-between gap-6"
+        style={{ 
+          backgroundImage: isLargeScreen ? `url(${image})` : 'none' 
+        }}
+      >
+          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 items-start">
+            {/* Left Side - Title */}
+            <div className="lg:w-1/3 lg:sticky lg:top-8">
+              <h1 className="text-5xl font-medium text-gray-800 max-w-2">
+                Working Mechanism
+              </h1>
+            </div>
+
+            {/* Right Side - Content */}
+            <div className="lg:w-2/3">
+              <p className="text-gray-600 text-base leading-relaxed mb-8">
+                We have a number of successful organizations under our belt that are
+                comprehensively designed and developed by our skilled team. Our working
+                methodologies encompass the integration of sectional development and
+                extensive planning. Our working protocols include but are not limited to
+                the following stages of development:
+              </p>
+
+              {/* Working Elements */}
+              <div className="space-y-6">
+                {WorkingElements.map((ele, index) => (
+                  <WorkingElementsComponent 
+                    key={index} 
+                    icon={ele.icon} 
+                    description={ele.description} 
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Working;

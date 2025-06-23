@@ -1,22 +1,44 @@
+import { useEffect, useState } from "react";
 import image from "../assets/body/image.png";
 import Prowess from "./Prowess";
 
 const Body = () => {
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   return (
-    <div className="py-12 px-4 space-y-16 max-w-7xl mx-auto">
-      <Startups />
+    <div className="py-12 px-4 space-y-16">
+      <div className="max-w-7xl mx-auto">
+        <Startups />
+      </div>
+
       <div
-        className="w-full bg-cover bg-center"
-        style={{ backgroundImage: `url(${image})` }}
+        className="w-full max-w-[2000px] mx-auto lg:bg-cover lg:bg-center"
+        style={{ 
+          backgroundImage: isLargeScreen ? `url(${image})` : 'none' 
+        }}
       >
-        <Ventures />
-        <Prospects />
-        <Prowess />
+        <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
+          <Ventures />
+          <Prospects />
+          <div className="bg-[#16171B] lg:bg-transparent">
+            <Prowess />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-
 
 export default Body;
 
@@ -45,13 +67,13 @@ const SectionLayout = ({
         <img
           src={imgSrc}
           alt={imgAlt}
-          className="w-full h-full"
+          className="w-[80%] h-full"
         />
       </div>
       <div className="md:w-1/2 text-left">
         <h1 className="text-4xl font-bold text-gray-800 mb-2">{title}</h1>
         <p className="text-red-600 font-normal mt-2 mb-4 text-lg">{subtitle}</p>
-        <p className="text-gray-700 leading-relaxed text-lg font-medium">{description}</p>
+        <p className="text-gray-700 leading-relaxed text-lg font-normal">{description}</p>
       </div>
     </div>
   );

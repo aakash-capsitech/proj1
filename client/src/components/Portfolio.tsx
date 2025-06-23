@@ -8,8 +8,8 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="py-10 px-4 text-center bg-white">
-      <h1 className="text-3xl font-semibold text-gray-800 mb-8">Portfolio</h1>
+    <div className="py-8 px-4 text-center bg-white">
+      <h1 className="text-4xl font-bold text-gray-800 mb-6">Portfolio</h1>
 
       <div className="flex flex-wrap justify-center gap-6 max-w-[1280px] mx-auto">
         {images.map((name, index) => (

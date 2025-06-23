@@ -97,8 +97,8 @@ const UpdatedComponent = ({ image, title }: UpdatedComponentElements) => {
         </button>
       </div>
       <div className="p-5 pt-6">
-        <h1 className="font-semibold text-lg mb-3">{title}</h1>
-        <p className="text-blue-600 hover:underline text-sm cursor-pointer">
+        <h1 className="font-semibold text-lg mb-3 hover:text-red-600">{title}</h1>
+        <p className="text-black hover:text-red-600 text-sm cursor-pointer">
           Read more
         </p>
       </div>
@@ -109,6 +109,7 @@ const UpdatedComponent = ({ image, title }: UpdatedComponentElements) => {
 const Updated = () => {
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-12">
+      <h1 className="text-4xl font-bold mb-8">Stay Updated, Stay Aware</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {elements.map((ele, index) => (
           <UpdatedComponent key={index} {...ele} />

@@ -1,3 +1,150 @@
+// import React, { useState, useEffect, useRef } from 'react';
+// import image01 from "../assets/header/images01.webp";
+// import image02 from "../assets/header/images02.webp";
+// import image03 from "../assets/header/images03.webp";
+// import image04 from "../assets/header/images04.webp";
+
+// const HeaderSlider = () => {
+//   const slides = [
+//     {
+//       id: 1,
+//       image: image01,
+//       title: 'Welcome to Our Platform',
+//       subtitle: 'Discover amazing features and endless possibilities',
+//       primaryButton: 'Get Started',
+//       secondaryButton: 'Learn More',
+//     },
+//     {
+//       id: 2,
+//       image: image02,
+//       title: 'Capsitech Institute of Technology',
+//       subtitle: 'Where innovation begins...',
+//       primaryButton: 'Know more',
+//     },
+//     {
+//       id: 3,
+//       image: image03,
+//       title: 'Graduation from NAAC A++ Accredited University',
+//       subtitle: 'Where innovation begins...',
+//       primaryButton: 'Know more',
+//     },
+//     {
+//       id: 4,
+//       image: image04,
+//       title: 'Study with us and excel the world of technology',
+//       subtitle: 'Where innovation begins...',
+//       primaryButton: 'Know more',
+//     }
+//   ];
+
+//   const [currentSlide, setCurrentSlide] = useState(0);
+//   const [isHovered, setIsHovered] = useState(false);
+//   const [isAnimating, setIsAnimating] = useState(false);
+//   const intervalRef = useRef<any>(null);
+
+//   useEffect(() => {
+//     if (!isHovered) {
+//       intervalRef.current = setInterval(() => {
+//         setCurrentSlide((prev) => (prev + 1) % slides.length);
+//       }, 3000);
+//     } else {
+//       clearInterval(intervalRef.current);
+//     }
+
+//     return () => clearInterval(intervalRef.current);
+//   }, [isHovered, slides.length]);
+
+//   const goToSlide = (index: number) => {
+//     if (index !== currentSlide && !isAnimating) {
+//       setIsAnimating(true);
+//       setCurrentSlide(index);
+//       setTimeout(() => setIsAnimating(false), 300);
+//     }
+//   };
+
+//   return (
+//     <div
+//       className="relative max-w-[1440px] mx-auto h-[400px] md:h-[600px] overflow-hidden group lg:my-4"
+//       onMouseEnter={() => setIsHovered(true)}
+//       onMouseLeave={() => setIsHovered(false)}
+//     >
+//       {slides.map((slide, index) => (
+//         <div
+//           key={slide.id}
+//           className={`absolute inset-0 w-full h-[80%] transition-opacity duration-700 ease-in-out flex items-center justify-center px-6 lg:px-12 ${
+//             index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+//           }`}
+//         >
+//           {/* Image */}
+//           <div className="absolute inset-0 flex items-center justify-center">
+//             <img
+//               src={slide.image}
+//               alt={slide.title}
+//               className="lg:w-[1990px] h-full object-contain"
+//             />
+//           </div>
+
+//           {/* Overlay content */}
+//           <div className="relative z-20 text-left max-w-2xl">
+//             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+//               {slide.title}
+//             </h1>
+//             <p className="text-base md:text-lg lg:text-xl text-gray-200 mb-6 leading-relaxed">
+//               {slide.subtitle}
+//             </p>
+
+//             <div className="flex flex-col sm:flex-row gap-4">
+//               <button className="group/btn bg-white hover:text-red-600 text-black px-5 py-2 rounded-md font-medium text-base transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2">
+//                 {slide.primaryButton}
+//               </button>
+//               {/* Optional Secondary Button */}
+//               {/* {slide.secondaryButton && (
+//                 <button className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-5 py-2 rounded-md font-medium text-base transition-all duration-300 transform hover:scale-105">
+//                   {slide.secondaryButton}
+//                 </button>
+//               )} */}
+//             </div>
+//           </div>
+//         </div>
+//       ))}
+
+//       {/* Slide Indicators */}
+//       <div className="absolute bottom-36 left-1/2 -translate-x-1/2 flex space-x-3 z-30">
+//         {slides.map((_, index) => (
+//           <button
+//             key={index}
+//             onClick={() => goToSlide(index)}
+//             className={`transition-all duration-300 ${
+//               index === currentSlide
+//                 ? 'w-10 h-2 bg-white rounded-full'
+//                 : 'w-2 h-2 bg-white/50 hover:bg-white/75 rounded-full hover:scale-125'
+//             }`}
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default HeaderSlider;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect, useRef } from 'react';
 import image01 from "../assets/header/images01.webp"
 import image02 from "../assets/header/images02.webp"
@@ -17,26 +164,23 @@ const HeaderSlider = () => {
     {
       id: 2,
       image: image02,
-      title: 'Innovative Solutions',
-      subtitle: 'Transform your business with cutting-edge technology',
-      primaryButton: 'Start Free Trial',
-      secondaryButton: 'View Demo'
+      title: 'Capsitech Institute of Technology',
+      subtitle: 'Where innovation begins...',
+      primaryButton: 'Know more',
     },
     {
       id: 3,
       image: image03,
-      title: 'Join Our Community',
-      subtitle: 'Connect with thousands of professionals worldwide',
-      primaryButton: 'Sign Up Now',
-      secondaryButton: 'Explore Features'
+      title: 'Graduation from NAAC A++ Accredited University',
+      subtitle: 'Where innovation begins...',
+      primaryButton: 'Know more',
     },
     {
       id: 4,
       image: image04,
-      title: 'Success Stories',
-      subtitle: 'See how others have achieved their goals with us',
-      primaryButton: 'Read Stories',
-      secondaryButton: 'Contact Us'
+      title: 'Study with us and excel the world of technology',
+      subtitle: 'Where innovation begins...',
+      primaryButton: 'Know more',
     }
   ];
 
@@ -90,11 +234,18 @@ const intervalRef = React.useRef<any>(null);
                 : 'opacity-0 scale-105'
             }`}
           >
-            <img
+          {/* <img
               src={slide.image}
               alt={slide.title}
               className="w-full h-full object-cover"
-            />
+            /> */}
+
+   <img
+  src={slide.image}
+  alt={slide.title}
+  className="w-full h-full object-fill"
+/>
+
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
           </div>
         ))}
@@ -116,15 +267,15 @@ const intervalRef = React.useRef<any>(null);
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="group/btn bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2">
+                <button className="group/btn bg-white hover:text-red-600 text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2">
                   {slides[currentSlide].primaryButton}
-                  <svg className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {/* <svg className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+                  </svg> */}
                 </button>
-                <button className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+                {/* <button className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
                   {slides[currentSlide].secondaryButton}
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

@@ -33,8 +33,8 @@ const ServiceComponent = ({ icon, title, description }: ServiceElements) => {
   return (
     <div className="flex flex-col items-start gap-2 px-4">
       <img src={icon} alt={title} className="w-20 h-20 rounded-full" />
-      <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
+      <h3 className="text-2xl font-semibold text-gray-800 my-2">{title}</h3>
+      <p className="text-gray-600 text-xl leading-8">{description}</p>
     </div>
   );
 };
