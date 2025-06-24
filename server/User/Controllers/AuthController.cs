@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using AuthenticationApp.Models.DTOs;
 using AuthenticationApp.Services;
+using Google.Apis.Auth;
+
 
 namespace AuthenticationApp.Controllers
 {
@@ -19,7 +21,7 @@ namespace AuthenticationApp.Controllers
         public async Task<IActionResult> Register(RegisterDto registerDto)
         {
             var result = await _authService.RegisterAsync(registerDto);
-            
+
             if (result == null)
                 return BadRequest("User with this email or username already exists");
 
@@ -30,11 +32,26 @@ namespace AuthenticationApp.Controllers
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
             var result = await _authService.LoginAsync(loginDto);
-            
+
             if (result == null)
                 return Unauthorized("Invalid email or password");
 
             return Ok(result);
         }
+
+        [HttpPost("google")]
+        public async Task<IActionResult> GoogleLogin([FromBody] TokenRequest request)
+        {
+            var payload = await GoogleJsonWebSignature.ValidateAsync(request.Token);
+            // Create user/session/JWT etc.
+            return Ok(new { email = payload.Email });
+        }
+
+        public class TokenRequest
+        {
+            public string? Token { get; set; }
+        }
+
     }
 }
+

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import GoogleLoginButton from '../components/GoogleLoginButton';
 
 interface User {
   token: string;
@@ -249,6 +250,8 @@ const Signin: React.FC = () => {
           >
             {loading ? 'Loading...' : (isLogin ? 'Login' : 'Register')}
           </button>
+
+          <GoogleLoginButton />
         </div>
 
         <div className="mt-4 text-center">

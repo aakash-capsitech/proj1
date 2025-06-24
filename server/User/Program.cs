@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AuthenticationApp.Data;
 using AuthenticationApp.Services;
+using Google.Apis.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +37,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-builder.Services.AddCors(options => {
+// CORS configuration
+builder.Services.AddCors(options =>
+{
     options.AddPolicy("AllowAll", policy =>
     {
         policy.AllowAnyOrigin()
@@ -45,23 +48,22 @@ builder.Services.AddCors(options => {
     });
 });
 
-// After var app = builder.Build();
-
 var app = builder.Build();
+
+// Middleware
 app.UseCors("AllowAll");
 
+app.UseAuthentication();
+app.UseAuthorization();
 
-// Configure the HTTP request pipeline.
+// Swagger in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthentication();
-app.UseAuthorization();
+// app.UseHttpsRedirection();
 
 app.MapControllers();
 
