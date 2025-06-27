@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const GoogleLoginButton = () => {
   const navigate = useNavigate()
   const handleSuccess = async (credentialResponse: any) => {
-    const res = await fetch('http://localhost:5083/api/auth/google', {
+    const res = await fetch('http://localhost:5000/api/auth/google', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: credentialResponse.credential })

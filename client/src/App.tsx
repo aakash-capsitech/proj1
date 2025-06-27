@@ -7,7 +7,7 @@ import ContactDataPage from "./pages/ContactDataPage"
 import Blogs from "./pages/Blogs"
 import Services from "./pages/Services"
 import Signin from "./pages/Signin"
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/contactdata" element={<ContactDataPage />} />
-          <Route path="/signin" element={<Signin />} />
+          {/*<Route path="/signin" element={<Signin />} />*/}
         </Routes>
       </BrowserRouter>
       </GoogleOAuthProvider>

@@ -88,7 +88,7 @@ const Working = () => {
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 items-start py-6">
             {/* Left Side - Title */}
             <div className="lg:w-1/3 lg:sticky lg:top-8">
-              <h1 className="text-5xl font-medium text-gray-800 max-w-2">
+              <h1 className="text-3xl md:text-5xl font-medium text-gray-800 max-w-2">
                 Working Mechanism
               </h1>
             </div>

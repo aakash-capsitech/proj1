@@ -85,18 +85,48 @@ namespace ContactFormAPI.Controllers
                 return StatusCode(500, new { message = "An error occurred while retrieving the contact", error = ex.Message });
             }
         }
-        
-        // POST: api/contacts
+
         [HttpPost]
-        public async Task<ActionResult<ContactResponseDto>> CreateContact(CreateContactDto createContactDto)
+        public async Task<ActionResult<object>> CreateContact([FromBody] CreateContactDto createContactDto)
         {
+            Console.WriteLine("? Entered CreateContact");
+
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                Console.WriteLine("?? ModelState is invalid");
+
+                var errors = ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .ToDictionary(
+                        kvp => kvp.Key,
+                        kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+                    );
+
+                return Ok(new
+                {
+                    success = false,
+                    message = "Validation failed",
+                    errors
+                });
             }
-            
+
+            // continue with insertion logic...
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    Console.WriteLine("Debug message: Something happened here.");
+
+                    var errors = ModelState
+                        .Where(kvp => kvp.Value.Errors.Count > 0)
+                        .ToDictionary(
+                            kvp => kvp.Key,
+                            kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+                        );
+
+                    return Ok(new { success = false, errors });
+                }
+
                 var contact = new Contact
                 {
                     Name = createContactDto.Name.Trim(),
@@ -105,9 +135,9 @@ namespace ContactFormAPI.Controllers
                     Message = createContactDto.Message.Trim(),
                     CreatedAt = DateTime.UtcNow
                 };
-                
+
                 await _context.Contacts.InsertOneAsync(contact);
-                
+
                 var contactResponse = new ContactResponseDto
                 {
                     Id = contact.Id ?? string.Empty,
@@ -117,7 +147,7 @@ namespace ContactFormAPI.Controllers
                     Message = contact.Message,
                     CreatedAt = contact.CreatedAt
                 };
-                
+
                 return CreatedAtAction(nameof(GetContact), new { id = contact.Id }, contactResponse);
             }
             catch (Exception ex)
@@ -125,7 +155,8 @@ namespace ContactFormAPI.Controllers
                 return StatusCode(500, new { message = "An error occurred while creating the contact", error = ex.Message });
             }
         }
-        
+
+
         // PUT: api/contacts/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateContact(string id, CreateContactDto updateContactDto)

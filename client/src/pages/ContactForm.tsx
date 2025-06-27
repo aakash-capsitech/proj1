@@ -23,71 +23,73 @@ const ContactForm = () => {
   const [touched, setTouched] = useState<{ [K in keyof FormData]?: boolean }>({});
   const [submitted, setSubmitted] = useState(false);
 
-  const maxMessageLength = 300;
+    const maxMessageLength = 300;
 
-  const validate = (field = '', value = '') => {
-    let newErrors: Partial<FormData> = { ...errors };
+    // setErrors({});
 
-    const nameRegex = /^[a-zA-Z\s]+$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[0-9]{10}$/;
+  //const validate = (field = '', value = '') => {
+  //  let newErrors: Partial<FormData> = { ...errors };
 
-    if (field === 'name' || !field) {
-      if (!formData.name.trim()) {
-        newErrors.name = 'Name is required.';
-      } else if (!nameRegex.test(formData.name)) {
-        newErrors.name = 'Name must only contain letters and spaces.';
-      } else {
-        delete newErrors.name;
-      }
-    }
+    //const nameRegex = /^[a-zA-Z\s]+$/;
+    //const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //const phoneRegex = /^[0-9]{10}$/;
 
-    if (field === 'email' || !field) {
-      if (!formData.email.trim()) {
-        newErrors.email = 'Email is required.';
-      } else if (!emailRegex.test(formData.email)) {
-        newErrors.email = 'Please enter a valid email address.';
-      } else {
-        delete newErrors.email;
-      }
-    }
+    //if (field === 'name' || !field) {
+    //  if (!formData.name.trim()) {
+    //    newErrors.name = 'Name is required.';
+    //  } else if (!nameRegex.test(formData.name)) {
+    //    newErrors.name = 'Name must only contain letters and spaces.';
+    //  } else {
+    //    delete newErrors.name;
+    //  }
+    //}
 
-    if (field === 'phone' || !field) {
-      if (!formData.phone.trim()) {
-        newErrors.phone = 'Phone number is required.';
-      } else if (!phoneRegex.test(formData.phone)) {
-        newErrors.phone = 'Phone number must be 10 digits.';
-      } else {
-        delete newErrors.phone;
-      }
-    }
+    //if (field === 'email' || !field) {
+    //  if (!formData.email.trim()) {
+    //    newErrors.email = 'Email is required.';
+    //  } else if (!emailRegex.test(formData.email)) {
+    //    newErrors.email = 'Please enter a valid email address.';
+    //  } else {
+    //    delete newErrors.email;
+    //  }
+    //}
 
-    if (field === 'message' || !field) {
-      if (!formData.message.trim()) {
-        newErrors.message = 'Message is required.';
-      } else if (formData.message.length > maxMessageLength) {
-        newErrors.message = `Message must be under ${maxMessageLength} characters.`;
-      } else {
-        delete newErrors.message;
-      }
-    }
+    //if (field === 'phone' || !field) {
+    //  if (!formData.phone.trim()) {
+    //    newErrors.phone = 'Phone number is required.';
+    //  } else if (!phoneRegex.test(formData.phone)) {
+    //    newErrors.phone = 'Phone number must be 10 digits.';
+    //  } else {
+    //    delete newErrors.phone;
+    //  }
+    //}
 
-    setErrors(newErrors);
-    return newErrors;
-  };
+    //if (field === 'message' || !field) {
+    //  if (!formData.message.trim()) {
+    //    newErrors.message = 'Message is required.';
+    //  } else if (formData.message.length > maxMessageLength) {
+    //    newErrors.message = `Message must be under ${maxMessageLength} characters.`;
+    //  } else {
+    //    delete newErrors.message;
+    //  }
+    //}
+
+    //setErrors(newErrors);
+  //  return newErrors;
+  //};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     if (touched[name as keyof FormData]) {
-      validate(name, value);
+      //validate(name, value);
     }
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name } = e.target;
     setTouched({ ...touched, [name]: true });
-    validate(name);
+    //validate(name);
   };
 
   // const handleSubmit = (e: React.FormEvent) => {
@@ -103,8 +105,8 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
   e.preventDefault();
-  const validationErrors = validate();
-  if (Object.keys(validationErrors).length === 0) {
+  //const validationErrors = validate();
+  //if (Object.keys(validationErrors).length === 0) {
     try {
       const response = await fetch('http://localhost:5178/api/contacts', {
         method: 'POST',
@@ -124,18 +126,20 @@ const ContactForm = () => {
       }
     } catch (error) {
       console.error('Error:', error);
-    }
+    //}
   }
 };
 
-  const isValid = Object.keys(errors).length === 0 && 
-    formData.name.trim() && 
-    formData.email.trim() && 
-    formData.phone.trim() && 
-    formData.message.trim();
+  //const isValid = Object.keys(errors).length === 0 &&
+  //  formData.name.trim() &&
+  //  formData.email.trim() &&
+  //  formData.phone.trim() &&
+    //  formData.message.trim();
+
+    // const isValid = true;
 
   return (
-    <div className='max-w-[1280px'> 
+    <div className='max-w-[1280px]'> 
     <div className="max-w-2xl mx-auto px-4 py-12">
       <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Contact Us</h2>
 
@@ -145,7 +149,8 @@ const ContactForm = () => {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-6">
+      {/*<form onSubmit={handleSubmit} noValidate className="space-y-6">*/}
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label htmlFor="name" className="block font-medium text-gray-700">
             Name <span className="text-red-500">*</span>
@@ -229,15 +234,21 @@ const ContactForm = () => {
         </div>
 
         <div className="text-center">
-          <button
+          {/*<button*/}
+          {/*  type="submit"*/}
+          {/*  disabled={!isValid}*/}
+          {/*  className={`px-6 py-3 rounded-full font-semibold text-white ${*/}
+          {/*    isValid ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'*/}
+          {/*  } transition duration-300`}*/}
+          {/*>*/}
+          {/*  Send Message*/}
+          {/*</button>*/}
+        <button
             type="submit"
-            disabled={!isValid}
-            className={`px-6 py-3 rounded-full font-semibold text-white ${
-              isValid ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'
-            } transition duration-300`}
-          >
+            className="px-6 py-3 rounded-full font-semibold text-white bg-blue-600 hover:bg-blue-700"
+        >
             Send Message
-          </button>
+        </button>
         </div>
       </form>
     </div>

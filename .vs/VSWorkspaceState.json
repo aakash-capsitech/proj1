@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\server",
+    "\\server\\ContactFormAPI",
+    "\\server\\ContactFormAPI\\Controllers",
+    "\\server\\ContactFormAPI\\Data",
+    "\\server\\ContactFormAPI\\DTOs",
+    "\\server\\ContactFormAPI\\Models"
+  ],
+  "SelectedNode": "\\server\\ContactFormAPI\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -178,7 +178,7 @@ const LogoFooter = () => (
       We are a web development company specialized in creating websites,
       applications, and software for audiences worldwide.
     </p>
-    <ul className="flex space-x-4 text-blue-600">
+    <ul className="flex space-x-4 text-blue-600 flex flex-wrap">
       <li><a href="#">Facebook</a></li>
       <li><a href="#">Twitter</a></li>
       <li><a href="#">LinkedIn</a></li>

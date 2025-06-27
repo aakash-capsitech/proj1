@@ -220,7 +220,7 @@ const intervalRef = React.useRef<any>(null);
 
   return (
     <div 
-      className="relative max-w-[1440px] mx-auto h-[600px] overflow-hidden group"
+          className="relative mt-[140px] lg:mt-0 max-w-[1440px] mx-auto h-[400px] lg:h-[600px] overflow-hidden group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -240,11 +240,11 @@ const intervalRef = React.useRef<any>(null);
               className="w-full h-full object-cover"
             /> */}
 
-   <img
-  src={slide.image}
-  alt={slide.title}
-  className="w-full h-full object-fill"
-/>
+           <img
+          src={slide.image}
+          alt={slide.title}
+          className="w-full h-full object-cover md:object-fill"
+        />
 
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
           </div>

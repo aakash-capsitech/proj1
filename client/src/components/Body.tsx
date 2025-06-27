@@ -59,18 +59,19 @@ const SectionLayout = ({
 }) => {
   return (
     <div
-      className={`flex flex-col md:flex-row items-center ${
-        reverse ? 'md:flex-row-reverse' : ''
+      className={`flex flex-col xl:flex-row lg:items-center lg:px-0 px-[20%] flex-start ${
+        reverse ? 'xl:flex-row-reverse' : ''
       } gap-8`}
     >
       <div className="md:w-1/2">
-        <img
-          src={imgSrc}
-          alt={imgAlt}
-          className="w-[80%] h-full"
-        />
+              <img
+                  src={imgSrc}
+                  alt={imgAlt}
+                  className="w-full h-auto max-w-[90%] sm:max-w-full"
+              />
+
       </div>
-      <div className="md:w-1/2 text-left">
+      <div className="lg:w-1/2 w-full text-left">
         <h1 className="text-4xl font-bold text-gray-800 mb-2">{title}</h1>
         <p className="text-red-600 font-normal mt-2 mb-4 text-lg">{subtitle}</p>
         <p className="text-gray-700 leading-relaxed text-lg font-normal">{description}</p>

@@ -5,7 +5,7 @@ const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white lg:py-6 py-6">
+      <nav className="bg-white lg:py-6 py-10 px-12 lg:px-0 fixed top-0 w-full z-50 lg:relative">
       <div className="flex justify-between items-center mx-auto max-w-[1280px] px-4">
         <div className="text-xl font-bold text-gray-800">
           <img
